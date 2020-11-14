@@ -88,9 +88,13 @@ func Classic(config *setting.Config) *Mottainai {
 		Section: "cache",
 	}))
 
+	sessionStore := "memory"
+	if config.GetDatabase().DBEngine == "tiedot" {
+		sessionStore = "tiedot"
+	}
 	sesopts := session.Options{
 		// Name of provider. Default is "memory".
-		Provider: "memory",
+		Provider: sessionStore,
 		// Provider configuration, it's corresponding to provider.
 		ProviderConfig: "",
 		// Cookie name to save session ID. Default is "MacaronSession".

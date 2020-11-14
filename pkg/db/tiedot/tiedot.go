@@ -40,7 +40,9 @@ type Database struct {
 }
 
 var Collections = []string{WebHookColl, TaskColl, SecretColl,
-	UserColl, PlansColl, PipelinesColl, NodeColl, NamespaceColl, TokenColl, ArtefactColl, StorageColl, OrganizationColl, SettingColl}
+	UserColl, PlansColl, PipelinesColl, NodeColl,
+	NamespaceColl, TokenColl, ArtefactColl, StorageColl,
+	OrganizationColl, SettingColl, SessionColl}
 
 func New(path string) *Database {
 	return &Database{Anagent: anagent.New(), DBPath: path}
@@ -66,6 +68,7 @@ func (d *Database) Init() {
 	d.IndexNamespace()
 	d.IndexArtefacts()
 	d.IndexStorage()
+	d.IndexSession()
 	d.IndexUser()
 	d.IndexToken()
 	d.IndexOrganization()

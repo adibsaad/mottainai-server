@@ -290,7 +290,7 @@ func (p *TiedotProvider) Count() (total int) {
 func (p *TiedotProvider) GC() {
   query := map[string]interface{}{
     "int-to": time.Now().Unix(),
-    "in": []string{"expiry"},
+    "in": []interface{}{"expiry"},
   }
 
   queryResult := make(map[int]struct{})
